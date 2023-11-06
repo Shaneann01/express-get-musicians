@@ -14,8 +14,18 @@ describe("./musicians endpoint", () => {
   test("Testing musicians endpoint", async () => {
     const response = await request(app).get("/musicians");
     const responseData = JSON.parse(response.text);
-    console.log(responseData);
     expect(response.statusCode).toBe(200);
     expect(typeof responseData).toBe("object");
+  });
+
+  test("Testing accuracy of data", async () => {
+    const response = await request(app).get("/musicians");
+    const responseData = JSON.parse(response.text);
+    expect(responseData[0].name).toBe("Mick Jagger");
+    expect(responseData[1].name).toBe("Drake");
+    expect(responseData[2].name).toBe("Jimi Hendrix");
+    expect(responseData[0].instrument).toBe("Voice");
+    expect(responseData[1].instrument).toBe("Voice");
+    expect(responseData[2].instrument).toBe("Guitar");
   });
 });
