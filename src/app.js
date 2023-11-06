@@ -12,4 +12,19 @@ app.get("/musicians", async (req, res) => {
   res.json(musicians);
 });
 
+app.get("/musicians/1", async (req, res) => {
+  const musician1 = await Musician.findByPk(1);
+  res.json(musician1);
+});
+
+app.get("/musicians/2", async (req, res) => {
+  const musician2 = await Musician.findByPk(2);
+  res.json(musician2);
+});
+
+app.get("/musicians/3", async (req, res) => {
+  const musician3 = await Musician.findByPk(3);
+  res.json(musician3);
+});
+
 module.exports = app;
