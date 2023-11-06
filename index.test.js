@@ -18,14 +18,28 @@ describe("./musicians endpoint", () => {
     expect(typeof responseData).toBe("object");
   });
 
-  test("Testing accuracy of data", async () => {
-    const response = await request(app).get("/musicians");
+  test("Testing musician 1 endpoint and accuracy", async () => {
+    const response = await request(app).get("/musicians/1");
     const responseData = JSON.parse(response.text);
-    expect(responseData[0].name).toBe("Mick Jagger");
-    expect(responseData[1].name).toBe("Drake");
-    expect(responseData[2].name).toBe("Jimi Hendrix");
-    expect(responseData[0].instrument).toBe("Voice");
-    expect(responseData[1].instrument).toBe("Voice");
-    expect(responseData[2].instrument).toBe("Guitar");
+    expect(response.statusCode).toBe(200);
+    expect(responseData.name).toBe("Mick Jagger");
+    expect(responseData.instrument).toBe("Voice");
+  });
+
+  test("Testing musician 2 endpoint and accuracy", async () => {
+    const response = await request(app).get("/musicians/2");
+    const responseData = JSON.parse(response.text);
+    expect(response.statusCode).toBe(200);
+    expect(responseData.name).toBe("Drake");
+    expect(responseData.instrument).toBe("Voice");
+  });
+
+  test("Testing musician 3 endpoint and accuracy", async () => {
+    const response = await request(app).get("/musicians/3");
+    const responseData = JSON.parse(response.text);
+    console.log(responseData);
+    expect(response.statusCode).toBe(200);
+    expect(responseData.name).toBe("Jimi Hendrix");
+    expect(responseData.instrument).toBe("Guitar");
   });
 });

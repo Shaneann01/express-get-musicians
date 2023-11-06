@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const { Musician } = require("../models/index");
+const { Band } = require("../models/index");
 const { db } = require("../db/connection");
 
 const port = 3000;
@@ -27,4 +28,23 @@ app.get("/musicians/3", async (req, res) => {
   res.json(musician3);
 });
 
+app.get("/bands", async (req, res) => {
+  const bands = await Band.findAll();
+  res.json(bands);
+});
+
+app.get("/bands/1", async (req, res) => {
+  const bands = await Band.findByPk(1);
+  res.json(bands);
+});
+
+app.get("/bands/2", async (req, res) => {
+  const bands = await Band.findByPk(2);
+  res.json(bands);
+});
+
+app.get("/bands/3", async (req, res) => {
+  const bands = await Band.findByPk(3);
+  res.json(bands);
+});
 module.exports = app;
