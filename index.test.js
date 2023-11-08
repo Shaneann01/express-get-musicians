@@ -43,3 +43,37 @@ describe("./musicians endpoint", () => {
     expect(responseData.instrument).toBe("Guitar");
   });
 });
+
+// testing band end points
+
+describe("Testing band endpoints and accuracy", () => {
+  test("Testing all bands", async () => {
+    const response = await request(app).get("/bands");
+    const responseData = JSON.parse(response.text);
+    console.log(responseData);
+    expect(response.statusCode).toBe(200);
+    expect(typeof responseData).toBe("object");
+  });
+
+  test("testing band 1", async () => {
+    const response = await request(app).get("/bands/1");
+    const responseData = JSON.parse(response.text);
+    expect(response.statusCode).toBe(200);
+    expect(responseData.name).toBe("The Beatles");
+    expect(responseData.genre).toBe("Rock");
+  });
+
+  test("Testing band 2", async () => {
+    const response = await request(app).get("/bands/2");
+    const responseData = JSON.parse(response.text);
+    expect(response.statusCode).toBe(200);
+    expect(responseData.name).toBe("Black Pink");
+    expect(responseData.genre).toBe("Pop");
+  });
+  test("Testing band 3", async () => {
+    const response = await request(app).get("/bands/3");
+    const responseData = JSON.parse(response.text);
+    expect(responseData.name).toBe("Coldplay");
+    expect(responseData.genre).toBe("Rock");
+  });
+});
