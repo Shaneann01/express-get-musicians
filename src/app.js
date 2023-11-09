@@ -13,19 +13,10 @@ app.get("/musicians", async (req, res) => {
   res.json(musicians);
 });
 
-app.get("/musicians/1", async (req, res) => {
-  const musician1 = await Musician.findByPk(1);
+app.get("/musicians/:id", async (req, res) => {
+  const id = req.params.id;
+  const musician1 = await Musician.findByPk(id);
   res.json(musician1);
-});
-
-app.get("/musicians/2", async (req, res) => {
-  const musician2 = await Musician.findByPk(2);
-  res.json(musician2);
-});
-
-app.get("/musicians/3", async (req, res) => {
-  const musician3 = await Musician.findByPk(3);
-  res.json(musician3);
 });
 
 app.get("/bands", async (req, res) => {
@@ -33,18 +24,9 @@ app.get("/bands", async (req, res) => {
   res.json(bands);
 });
 
-app.get("/bands/1", async (req, res) => {
-  const bands = await Band.findByPk(1);
-  res.json(bands);
-});
-
-app.get("/bands/2", async (req, res) => {
-  const bands = await Band.findByPk(2);
-  res.json(bands);
-});
-
-app.get("/bands/3", async (req, res) => {
-  const bands = await Band.findByPk(3);
+app.get("/bands/:id", async (req, res) => {
+  const id = req.params.id;
+  const bands = await Band.findByPk(id);
   res.json(bands);
 });
 module.exports = app;
